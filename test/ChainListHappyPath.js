@@ -45,4 +45,32 @@ contract("ChainList", function(accounts) {
         );
       });
   });
+
+  it("should trigger and event when an article is sold", function() {
+    return Chainlist.deployed()
+      .then(instance => {
+        chainListInstance = instance;
+        return chainListInstance.sellArticle(
+          articleName,
+          articleDescription,
+          web3.toWei(articlePrice, "ether"),
+          { from: seller }
+        );
+      })
+      .then(receipt => {
+        assert.equal(receipt.logs.length, 1, "1 event should be fired");
+        assert.equal(
+          receipt.logs[0].event,
+          "LogSellArticle",
+          "correct event was fired"
+        );
+        assert.equal(receipt.logs[0].args._seller, seller, "log seller");
+        assert.equal(receipt.logs[0].args._name, articleName, "log seller");
+        assert.equal(
+          receipt.logs[0].args._price.toNumber(),
+          web3.toWei(articlePrice, "ether"),
+          "log seller"
+        );
+      });
+  });
 });

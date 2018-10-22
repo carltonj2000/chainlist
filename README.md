@@ -23,9 +23,14 @@ The code in the directory was created by the following command.
     - check account balance
   - `ChainList.deployed().then(function(instance) {app = instance;});`
     - get instance of contract
-  - `pp.sellArticle('shirt','covers your back', web3.toWei(1,"ether"),{from: web3.eth.accounts[1]})`
+  - `app.sellArticle('shirt','covers your back', web3.toWei(1,"ether"),{from: web3.eth.accounts[1]})`
     - sell an article
   - `app.getArticle()`
     - get an article information
 - `truffle test` to test after writing `ChainListHappyPath.js` mocha/chai test
 - `truffle migrate --compile-all --reset --network ganache` deployed the contract to Ganache
+- add event to contract
+- `sellEvent = app.LogSellArticle({},{fromBlock: 0, toBlock: 'latest'}).watch((err, event)=> console.log(event))`
+  - at truffle console watch contract event after gettging app instance
+- sell an article and watch an event fire
+- `sellEvent.stopWatching()` - to stop watching events
