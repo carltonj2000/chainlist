@@ -37,6 +37,7 @@ App = {
     $.getJSON("ChainList.json", function(chainListArtifact) {
       App.contracts.ChainList = TruffleContract(chainListArtifact);
       App.contracts.ChainList.setProvider(App.web3Provider);
+      App.listenToEvents();
       return App.reloadArticles();
     });
   },
@@ -81,12 +82,24 @@ App = {
           gas: 500000
         });
       })
-      .then(function(result) {
-        App.reloadArticles();
-      })
       .catch(function(e) {
         console.log(e);
       });
+  },
+
+  listenToEvents: function() {
+    App.contracts.ChainList.deployed().then(function(instance) {
+      instance.LogSellArticle({}, {}).watch(function(err, event) {
+        if (!err) {
+          $("#events").append(
+            '<li class="list-group-item">' +
+              event.args._name +
+              " is now for sale.</li>"
+          );
+        } else console.log(error);
+        App.reloadArticles();
+      });
+    });
   }
 };
 
