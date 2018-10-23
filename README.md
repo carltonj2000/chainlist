@@ -34,3 +34,11 @@ The code in the directory was created by the following command.
   - at truffle console watch contract event after gettging app instance
 - sell an article and watch an event fire
 - `sellEvent.stopWatching()` - to stop watching events
+- `web3.personal.unlockAccount(web3.eth.accounts[1],"pass1234",600);`
+  - when connecting to a private geth instance have to unlock and account to
+    use it. the seconds parameter is the number of seconds to keep the account
+    unlocked.
+  - `from: "<account address>"`
+    - The above line is needed in the truffle.js file for the selected network
+      in order to deploy contracts from the an account other than the
+      coninbase/accounts[0]
