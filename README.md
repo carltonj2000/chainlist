@@ -42,3 +42,8 @@ The code in the directory was created by the following command.
     - The above line is needed in the truffle.js file for the selected network
       in order to deploy contracts from the an account other than the
       coninbase/accounts[0]
+- `buyEvent = app.LogBuyArticle({_seller: web3.eth.accounts[1]},{}).watch((er, event)=> console.log(event))`
+  - at truffle console watch a contract event after gettging app instance
+- `App.buyArticle({from: web3.eth.accounts[2], value: web3.toWei(10, "ether")})`
+  - buy the article
+- `debug "<tx hash>"` - at truffle prompt debug a transaction
