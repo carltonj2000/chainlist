@@ -47,3 +47,16 @@ The code in the directory was created by the following command.
 - `App.buyArticle({from: web3.eth.accounts[2], value: web3.toWei(10, "ether")})`
   - buy the article
 - `debug "<tx hash>"` - at truffle prompt debug a transaction
+
+## Commands In Order Of Usual Execution
+
+- truffle console --network ganache
+- migrate --compile-all --reset
+- ChainList.deployed().then(function(instance) {app = instance;})
+- sellEvent = app.LogSellArticle({},{}).watch((err, event)=> console.log(event))
+- app.getNumberOfArticles();
+- app.getArticlesForSale();
+- app.sellArticle('Article 1','Description of Article 1', web3.toWei(3,"ether"),{from: web3.eth.accounts[1]})
+- app.sellArticle('Article 2','Description of Article 2', web3.toWei(3,"ether"),{from: web3.eth.accounts[2]})
+- app.sellArticle('Article 3','Description of Article 3', web3.toWei(3,"ether"),{from: web3.eth.accounts[1]})
+- app.articles(1)
