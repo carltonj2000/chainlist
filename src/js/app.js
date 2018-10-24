@@ -51,15 +51,22 @@ App = {
       })
       .then(function(article) {
         if (article[0] == 0x0) return;
+        const price = web3.fromWei(article[4].toNumber(), "ether");
         const articleTemplate = $("#articleTemplate");
-        articleTemplate.find(".panel-title").text(article[1]);
-        articleTemplate.find(".article-description").text(article[2]);
-        articleTemplate
-          .find(".article-price")
-          .text(web3.fromWei(article[3].toNumber(), "ether"));
+        articleTemplate.find(".panel-title").text(article[2]);
+        articleTemplate.find(".article-description").text(article[3]);
+        articleTemplate.find(".article-price").text(price);
+        articleTemplate.find(".btn-buy").attr("data-value", price);
         let seller = article[0];
         if (seller === App.account) seller = "You";
         articleTemplate.find(".article-seller").text(seller);
+        let buyer = article[1];
+        if (buyer == App.account) buyer = "You";
+        if (buyer == 0x0) buyer = "No one yet";
+        articleTemplate.find(".article-buyer").text(buyer);
+        if (article[0] == App.account || article[1] != 0x0)
+          articleTemplate.find(".btn-buy").hide();
+        else articleTemplate.find(".btn-buy").show();
         $("#articlesRow").append(articleTemplate.html());
       })
       .catch(function(err) {
@@ -87,6 +94,23 @@ App = {
       });
   },
 
+  buyArticle: function() {
+    event.preventDefault();
+    const _price = parseFloat($(event.target).data("value"));
+    console.log(_price);
+    App.contracts.ChainList.deployed()
+      .then(function(instance) {
+        return instance.buyArticle({
+          from: App.account,
+          value: web3.toWei(_price, "ether"),
+          gas: 500000
+        });
+      })
+      .catch(function(e) {
+        console.log(e);
+      });
+  },
+
   listenToEvents: function() {
     App.contracts.ChainList.deployed().then(function(instance) {
       instance.LogSellArticle({}, {}).watch(function(err, event) {
@@ -95,6 +119,18 @@ App = {
             '<li class="list-group-item">' +
               event.args._name +
               " is now for sale.</li>"
+          );
+        } else console.log(error);
+        App.reloadArticles();
+      });
+      instance.LogBuyArticle({}, {}).watch(function(err, event) {
+        if (!err) {
+          $("#events").append(
+            '<li class="list-group-item">' +
+              event.args._buyer +
+              " bought " +
+              event.args._name +
+              "</li>"
           );
         } else console.log(error);
         App.reloadArticles();
