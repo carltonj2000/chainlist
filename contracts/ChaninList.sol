@@ -68,7 +68,7 @@ contract ChainList {
     require(articleCounter > 0, "have an article to sell"); 
     require(_id > 0 && _id <= articleCounter, "id is in the articles range"); 
     Article storage article = articles[_id];
-    require(article.buyer == 0x0, "not already bought");
+    require(article.buyer == 0x0, "already bought");
     require(msg.sender != article.seller, "not allowed to buy your own article");
     require(msg.value == article.price, "need to pay correct amount");
     article.buyer = msg.sender;
