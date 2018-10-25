@@ -15,13 +15,13 @@ contract ChainList {
   uint articleCounter;
 
   event LogSellArticle(
-    uint indexed id,
+    uint indexed _id,
     address indexed _seller,
     string _name,
     uint256 _price
   );
   event LogBuyArticle(
-    uint indexed id,
+    uint indexed _id,
     address indexed _seller,
     address indexed _buyer,
     string _name,
@@ -58,7 +58,7 @@ contract ChainList {
     }
 
     uint[] memory forSale = new uint[](numberOfArticlesForSale);
-    for (uint j = 1; j < numberOfArticlesForSale; j++) {
+    for (uint j = 0; j < numberOfArticlesForSale; j++) {
       forSale[j] = articleIds[j];
     }
     return forSale;

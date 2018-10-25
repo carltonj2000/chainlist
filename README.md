@@ -60,3 +60,4 @@ The code in the directory was created by the following command.
 - app.sellArticle('Article 2','Description of Article 2', web3.toWei(3,"ether"),{from: web3.eth.accounts[2]})
 - app.sellArticle('Article 3','Description of Article 3', web3.toWei(3,"ether"),{from: web3.eth.accounts[1]})
 - app.articles(1)
+- app.buyArticle(1,{from: web3.eth.accounts[3], value: web3.toWei(3,"ether")})
