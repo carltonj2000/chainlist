@@ -11,6 +11,7 @@ contract ChainList {
     uint256 price;    
   }
 
+  address owner;
   mapping(uint => Article) public articles;
   uint articleCounter;
 
@@ -28,6 +29,15 @@ contract ChainList {
     uint256 _price
   );
 
+  constructor () public {
+    owner = msg.sender;
+  }
+
+  function kill() public {
+    require(msg.sender == owner, "Only the owner can call this function");
+    selfdestruct(owner);
+  }
+  
   function sellArticle(string _name, string _description, uint256 _price) public {
     articleCounter++;
     articles[articleCounter] = Article(
