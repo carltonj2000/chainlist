@@ -1,0 +1,1 @@
+geth --rinkeby --rpc --rpcapi="personal,eth,newtork,web3,net" --ipcpath "~/.ethereum/geth.ipc"  --datadir "~/cj/cj2018mac/ethereum/rinkebychain"

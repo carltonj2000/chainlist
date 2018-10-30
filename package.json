@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "lite-server",
-    "rinkeby": "./startrinkeby-mac.sh",
+    "rinkeby-mac": "./startrinkeby-mac.sh",
+    "rinkeby-linux": "./startrinkeby-linux.sh",
     "deploy": "./deployfrontend.sh"
   },
   "author": "Carlton Joseph",

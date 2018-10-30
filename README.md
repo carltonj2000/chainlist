@@ -67,7 +67,8 @@ The distributed frontend can be accessed
 
 # Rinkeby
 
-- geth --rinkeby
+- geth --rinkeby --datadir /home/carltonmac/cj/cj2018mac/ethereum/rinkebychain
+- geth --rinkeby create new
 
 # Linux Setup
 
@@ -80,5 +81,6 @@ install node
 npm install truffle -g
 
 # MAC Setup
-brew 
+
+brew
 goto truffleframework.com and download ganache, run to install
