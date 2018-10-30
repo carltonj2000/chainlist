@@ -8,6 +8,9 @@ The code in the directory was created by the following command.
 
 - `truffle unbox chainskills/chainskills-box`
 
+The distributed frontend can be accessed
+[here](https://carltonj2000.github.io/chainlist/).
+
 # Process
 
 - start Ganache GUI
