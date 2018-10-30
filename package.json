@@ -1,5 +1,5 @@
 {
-  "name": "ChainList",
+  "name": "chainlist",
   "version": "0.0.1",
   "description": "",
   "main": "truffle.js",
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "lite-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "./deployfrontend.sh"
   },
   "author": "Carlton Joseph",
   "license": "ISC",
