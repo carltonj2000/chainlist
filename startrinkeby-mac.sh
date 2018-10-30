@@ -1,0 +1,1 @@
+geth --rinkeby --rpc --rpcapi="personal,eth,newtork,web3,net" --ipcpath "~/Library/Ethereum/geth.ipc"

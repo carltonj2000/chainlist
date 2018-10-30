@@ -39,7 +39,6 @@ App = {
       App.contracts.ChainList = TruffleContract(chainListArtifact);
       App.contracts.ChainList.setProvider(App.web3Provider);
       App.listenToEvents();
-      // return App.reloadArticles(); // moved to event listening
     });
   },
 
@@ -157,11 +156,11 @@ App = {
           App.reloadArticles();
         });
       })
-      .catch(e => {
-        $("#accountBalance").text("No contract deployed yet.");
-        $("#account").text("");
-        $("#sellNevents").hide();
-      });
+      .catch(e => App.noContractYet());
+  },
+  noContractYet: function() {
+    $("#accountBalance").text("No contract deployed yet.");
+    $("#sellNevents").hide();
   }
 };
 

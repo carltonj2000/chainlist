@@ -54,7 +54,7 @@ The distributed frontend can be accessed
 ## Commands In Order Of Usual Execution
 
 - truffle console --network ganache
-- migrate --compile-all --reset
+- truffle migrate --compile-all --reset --network ganache
 - ChainList.deployed().then(function(instance) {app = instance;})
 - sellEvent = app.LogSellArticle({},{}).watch((err, event)=> console.log(event))
 - app.getNumberOfArticles();
@@ -64,3 +64,7 @@ The distributed frontend can be accessed
 - app.sellArticle('Article 3','Description of Article 3', web3.toWei(3,"ether"),{from: web3.eth.accounts[1]})
 - app.articles(1)
 - app.buyArticle(1,{from: web3.eth.accounts[3], value: web3.toWei(3,"ether")})
+
+# Rinkeby
+
+- geth --rinkeby
