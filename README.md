@@ -68,3 +68,17 @@ The distributed frontend can be accessed
 # Rinkeby
 
 - geth --rinkeby
+
+# Linux Setup
+
+sudo apt install software-properties-common
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt update
+sudo apt install ethereum
+goto truffleframework.com and download ganache, chmod +x, run to install
+install node
+npm install truffle -g
+
+# MAC Setup
+brew 
+goto truffleframework.com and download ganache, run to install
