@@ -39,7 +39,7 @@ App = {
       App.contracts.ChainList = TruffleContract(chainListArtifact);
       App.contracts.ChainList.setProvider(App.web3Provider);
       App.listenToEvents();
-      return App.reloadArticles();
+      // return App.reloadArticles(); // moved to event listening
     });
   },
 
@@ -131,30 +131,37 @@ App = {
   },
 
   listenToEvents: function() {
-    App.contracts.ChainList.deployed().then(function(instance) {
-      instance.LogSellArticle({}, {}).watch(function(err, event) {
-        if (!err) {
-          $("#events").append(
-            '<li class="list-group-item">' +
-              event.args._name +
-              " is now for sale.</li>"
-          );
-        } else console.log(error);
-        App.reloadArticles();
+    App.contracts.ChainList.deployed()
+      .then(function(instance) {
+        $("#sellNevents").show();
+        instance.LogSellArticle({}, {}).watch(function(err, event) {
+          if (!err) {
+            $("#events").append(
+              '<li class="list-group-item">' +
+                event.args._name +
+                " is now for sale.</li>"
+            );
+          } else console.log(error);
+          App.reloadArticles();
+        });
+        instance.LogBuyArticle({}, {}).watch(function(err, event) {
+          if (!err) {
+            $("#events").append(
+              '<li class="list-group-item">' +
+                event.args._buyer +
+                " bought " +
+                event.args._name +
+                "</li>"
+            );
+          } else console.log(error);
+          App.reloadArticles();
+        });
+      })
+      .catch(e => {
+        $("#accountBalance").text("No contract deployed yet.");
+        $("#account").text("");
+        $("#sellNevents").hide();
       });
-      instance.LogBuyArticle({}, {}).watch(function(err, event) {
-        if (!err) {
-          $("#events").append(
-            '<li class="list-group-item">' +
-              event.args._buyer +
-              " bought " +
-              event.args._name +
-              "</li>"
-          );
-        } else console.log(error);
-        App.reloadArticles();
-      });
-    });
   }
 };
 
