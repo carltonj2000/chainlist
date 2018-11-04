@@ -84,6 +84,7 @@ Host *10.0.0.137
   - eth.syncing - returns false if complete, otherwise present status numbers
   - personal.unlockAccount(eth.accounts[0],"password",1200);
 - truffle migrate --compile-all --reset --network rinkeby
+- https://rinkeby.etherscan.io - use to check your transactions
 
 # Linux Setup
 
