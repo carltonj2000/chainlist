@@ -67,9 +67,10 @@ The distributed frontend can be accessed
 
 # Rinkeby
 
+- geth --rinkeby account new - create 3 new accounts
 - geth --rinkeby --datadir /home/carltonmac/cj/cj2018mac/ethereum/rinkebychain
 - geth --rinkeby --datadir /home/carltonmac/cj/cj2018mac/ethereum/rinkebychain account new
-- use the startrinkeby-linux/mac to run the script
+- use the startrinkeby-linux/mac.sh to run the script
 - can access geth remotely by the setting up a tunnl
   - ssh -f -N -L 8545:localhost:8545 carltonmac@10.0.0.137
   - keep the ssh connection alive in ~/.ssh/config
@@ -80,7 +81,7 @@ Host *10.0.0.137
 ```
 
 - geth attach
-  - eth.syncing
+  - eth.syncing - returns false if complete, otherwise present status numbers
   - personal.unlockAccount(eth.accounts[0],"password",1200);
 - truffle migrate --compile-all --reset --network rinkeby
 
@@ -96,5 +97,6 @@ npm install truffle -g
 
 # MAC Setup
 
-brew
+brew ??
+install node
 goto truffleframework.com and download ganache, run to install
