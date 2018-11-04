@@ -68,7 +68,21 @@ The distributed frontend can be accessed
 # Rinkeby
 
 - geth --rinkeby --datadir /home/carltonmac/cj/cj2018mac/ethereum/rinkebychain
-- geth --rinkeby create new
+- geth --rinkeby --datadir /home/carltonmac/cj/cj2018mac/ethereum/rinkebychain account new
+- use the startrinkeby-linux/mac to run the script
+- can access geth remotely by the setting up a tunnl
+  - ssh -f -N -L 8545:localhost:8545 carltonmac@10.0.0.137
+  - keep the ssh connection alive in ~/.ssh/config
+
+```
+Host *10.0.0.137
+  ServerAliveInterval 60
+```
+
+- geth attach
+  - eth.syncing
+  - personal.unlockAccount(eth.accounts[0],"password",1200);
+- truffle migrate --compile-all --reset --network rinkeby
 
 # Linux Setup
 
