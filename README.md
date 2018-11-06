@@ -50,6 +50,7 @@ The distributed frontend can be accessed
 - `App.buyArticle({from: web3.eth.accounts[2], value: web3.toWei(10, "ether")})`
   - buy the article
 - `debug "<tx hash>"` - at truffle prompt debug a transaction
+- https://ethgasstation.info/ - to use when setting your gas price for contracts
 
 ## Commands In Order Of Usual Execution
 
